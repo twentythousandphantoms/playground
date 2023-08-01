@@ -35,3 +35,4 @@ jobs:
     - name: Check for Terraform Plan Changes
       id: check_changes
       run: echo "::set-output name=changes::$(terraform show -json tfplan | jq -r '.resource_changes | length')"
+
