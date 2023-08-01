@@ -3,7 +3,7 @@ name: Terraform Code Testing
 on:
   push:
     branches:
-      - main
+      - github-action
 
 jobs:
   terraform_test:
