@@ -37,8 +37,10 @@ public class ProducerDemoWithCallback {
         // create the Producer
         KafkaProducer<String, String> producer = new KafkaProducer<>(properties);
 
+        // loop for batching
         for (int j=0; j<10; j++){
 
+            // loop for sending messages in batch
             for (int i = 0; i < 30 ; i++) {
                 // create a producer record
                 ProducerRecord<String, String> producerRecord =
