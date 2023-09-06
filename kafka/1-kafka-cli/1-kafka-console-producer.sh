@@ -1,4 +1,11 @@
-# Replace "kafka-console-producer.sh" 
+kafka-console-producer --bootstrap-server=cluster.playground.cdkt.io:9092 --producer.config /opt/homebrew/bin/conduktor.config --topic andrei_1 --property parse.key=true --property key.separator=
+
+❯ kafka-topics --bootstrap-server=cluster.playground.cdkt.io:9092 --command-config /opt/homebrew/bin/conduktor.config --create --topic second_topic --partitions 3
+
+
+
+
+# Replace "kafka-console-producer.sh"
 # by "kafka-console-producer" or "kafka-console-producer.bat" based on your system # (or bin/kafka-console-producer.sh or bin\windows\kafka-console-producer.bat if you didn't setup PATH / Environment variables)
 
 kafka-console-producer.sh 
