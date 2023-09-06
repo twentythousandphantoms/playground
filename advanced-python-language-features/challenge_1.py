@@ -70,3 +70,26 @@ output = string_combiner("This", "is", 1, True, "string!", unique_only=False)
 print(output)
 output = string_combiner("This", "is", [1, 2], "string!", unique_only=False)
 print(output)
+
+# Solution 3 (with list comprehension):
+def string_combiner(*args, unique_only=False):
+    """Combines all the arguments into a single string.
+    If the unique_only argument is True (default is False), then the result
+    combined string will not contain any duplicate characters.
+    """
+    result = "".join([str(arg) for arg in args if isinstance(arg, (str, int, float))])
+    if unique_only:
+        result = "".join(set(result))
+    return result
+
+
+# test code:
+print(string_combiner.__doc__)
+output = string_combiner("This", "is", 1, "test", "string!", unique_only=False)
+print(output)
+output = string_combiner("This", "is", 1, "test", "string!", unique_only=True)
+print(output)
+output = string_combiner("This", "is", 1, True, "string!", unique_only=False)
+print(output)
+output = string_combiner("This", "is", [1, 2], "string!", unique_only=False)
+print(output)
