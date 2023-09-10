@@ -30,13 +30,15 @@ class Book():
 
     # TODO: Implement the adjustedprice attribute
     @property
-    def adjustedprice(self):
-        if self.antique:
-            return self.price + 10.00
-        elif self.cover == "Paperback":
-            return self.price - 2.00
-        else:
-            return self.price
+    def __getattr__(self, item):
+        if item == "adjustedprice":
+            if self.antique:
+                return self.price + 10.00
+            elif self.cover == Cover.PAPERBACK:
+                return self.price - 2.00
+            else:
+                return self.price
+
 
     # TODO: Implement comparisons <, >, <=, >=
     def __lt__(self, other):
