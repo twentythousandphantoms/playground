@@ -1,0 +1,40 @@
+name: Terraform Code Testing
+
+on:
+  push:
+    branches:
+      - github-action
+  workflow_dispatch:
+
+jobs:
+  terraform_test:
+    name: Terraform Code Testing
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout Code
+      uses: actions/checkout@v2
+
+    - name: Install Terraform
+      uses: hashicorp/setup-terraform@v1
+      with:
+        terraform_version: "1.4.5"
+
+    - name: AWS Authentication
+      environment: AWS_ACCESS_KEY_ID
+      uses: aws-actions/configure-aws-credentials@v1
+      with:
+        aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+        aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+        aws-region: us-east-1
+
+    - name: Initialize Terraform
+      run: terraform init
+
+    - name: Terraform Plan Check
+      run: terraform plan -out=tfplan
+
+    - name: Check for Terraform Plan Changes
+      id: check_changes
+      run: echo "::set-output name=changes::$(terraform show -json tfplan | jq -r '.resource_changes | length')"
+
