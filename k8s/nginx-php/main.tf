@@ -53,7 +53,7 @@ data "aws_ecrpublic_authorization_token" "token" {
 }
 
 locals {
-  name            = "exness-eks"
+  name            = var.name
   cluster_version = "1.27"
   region          = "eu-west-1"
 
