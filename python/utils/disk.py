@@ -22,6 +22,29 @@ def check_disk_space(path="/"):
         print("Warning: Disk space running low!")
         sys.exit(1)
 
+def list_files(path="/"):
+    # List files in a directory
+    files = shutil.os.listdir(path)
+    print(files)
+
+# List files in a directory recursively
+def list_files_recursively(path="."):
+    files = shutil.os.walk(path)
+    if files is None:
+        print(f"Directory {path} does not exist.")
+        sys.exit(1)
+
+    if len(list(files)) == 0:
+        print(f"Directory {path} is empty.")
+        sys.exit(1)
+
+    for dirpath, dirnames, filenames in files:
+        print(f"Found directory: {dirpath}")
+        for file in filenames:
+            print(f"Found file: {file}")
+
 
 if __name__ == "__main__":
     check_disk_space()
+    list_files()
+    list_files_recursively()
