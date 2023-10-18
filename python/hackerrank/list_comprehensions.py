@@ -25,8 +25,13 @@ Print the list in lexicographic increasing order.
 
 
 def main():
-    all_permutations = [[i, j, k] for i in range(x + 1) for j in range(y + 1) for k in range(z + 1)]
-    output = [coordinates for coordinates in all_permutations if coordinates[0]+coordinates[1]+coordinates[2] != n]
+    output = [
+        [i, j, k]
+        for i in range(x + 1)
+        for j in range(y + 1)
+        for k in range(z + 1)
+        if i + j + k != n
+    ]
     print(output)
 
 
